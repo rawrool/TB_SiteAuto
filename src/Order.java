@@ -11,29 +11,13 @@ public class Order{
 	public static void main(String[] args) throws FindFailed {
 
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\RXH7688\\Documents\\ChromeDriver\\chromedriver.exe");
-		WebDriver driver= new ChromeDriver();
-		driver.get("https://www.ta.co");
-		String actualTitle = driver.getTitle();
-
-		WebElement element = driver.findElement(By.xpath("//*[contains(@href,'/food/tacos')]"));
-
-		screenLoadingWaitTime(3);
-
-		element.click();
-
-		screenLoadingWaitTime(3);
-
-		WebElement itemdriver = driver.findElement(By.xpath("//*[contains(@href,'/food/tacos/crunchy-taco')]"));
-
-		itemdriver.click();
+		WebClass site = new WebClass("https://www.ta.co");
+		site.getToSite();
+		site.clickOnElementByXpath("//*[contains(@href,'/food/tacos')]");
+		site.clickOnElementByXpath("//*[contains(@href,'/food/tacos/crunchy-taco')]");
+		site.clickOnElementByXpath("//*/button[@id='addToCartButton']");
+		site.clickOnElementByXpath("//*[@class='btn btn-primary checkout']");
 
 	}
 
-	public static void screenLoadingWaitTime(int seconds) {
-		try {
-			TimeUnit.SECONDS.sleep(seconds);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 }
